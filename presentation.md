@@ -61,17 +61,36 @@ during our work with RGW.
 
 ### Ceph Arch - 2
 - Slide touching on RADOS (Reliable Distributed Object Storage)
+- Replicated
+- Object placement depending on hash calculation (CRUSH Algorithm)
+  + Allows infrastructure aware placement strategies based on failure domains etc.
+- Strong CP consistency
+- Clients directly talk to storage clusters
 
 ### Ceph Arch - 3
 - Slide touching on LIBRADOS
+- Basically a KV API
+- Ability to store extended attribs. for an object as k-v pair
+- Atomic write and CAS ops
+- Stored procedures in form of ObjClasses
 
 ### Ceph Arch - 4
 - Slide touching on MONs and OSDs
+- Mons:
+  + maintain cluster membership and state
+  + Not in data path
+  + consensus via Paxos
+- OSDs:
+  + 1 osd/disk
+  + stores objects and clients talk to OSDs directly
+  + replicates
 
 ### RADOS Gateway (RGW) Intro
 - REST gateway to a Ceph Storage Cluster
-- Supports S3, Swift
+- A "client" to the Ceph Cluster
+- Supports S3, Swift API
 - Static Website
+- Users, Buckets, Objects & ACLs across all these
 
 ### RGW Arch
 - Diagram showing basic RGW arch
